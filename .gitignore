@@ -1,0 +1,26 @@
+# Node modules and lock files
+node_modules/
+package-lock.json
+yarn.lock
+
+# Output directories (adjust if your build output folder is different)
+dist/
+build/
+
+# Environment files
+.env
+
+# Log files
+logs/
+*.log
+
+# Operating system files
+.DS_Store
+
+# IDE specific files (VSCode, etc.)
+.vscode/
+.idea/
+
+# Temporary files
+tmp/
+temp/

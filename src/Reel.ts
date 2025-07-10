@@ -17,8 +17,15 @@ export class Reel {
     this.buildSymbols();
   }
 
+  /**
+   * Initializes the reel's symbols.
+   *
+   * Creates 4 symbols with random textures, scales them to fit `SYMBOL_SIZE`,
+   * positions them vertically, centers them horizontally, and adds them to
+   * the reel's container and tracking array.
+   */
   private buildSymbols() {
-    // For a fixed number of symbols (we use 4 as in your original code)
+    // For a fixed number of symbols
     for (let j = 0; j < 4; j++) {
       const randomTexture = this.randomTexture();
       const symbol = new Sprite(randomTexture);

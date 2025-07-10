@@ -10,8 +10,8 @@ import {
   Color,
 } from "pixi.js";
 import { Reel } from "./Reel";
-import { tweenTo, updateTweening, backout } from "./Tween";
 import { initDevtools } from "@pixi/devtools";
+import gsap from "gsap"; // import GSAP
 
 export class Game {
   private app: Application;
@@ -123,11 +123,9 @@ export class Game {
         r.updateBlur();
         r.updateSymbols();
       });
-      updateTweening();
     });
   }
 
-  // New method to recalc layout responsively.
   private adjustLayout(): void {
     const width = this.app.screen.width;
     const height = this.app.screen.height;
@@ -163,21 +161,20 @@ export class Game {
 
   public startPlay(): void {
     if (this.running) return;
+
     this.running = true;
     this.reels.forEach((r, i) => {
       const extra = Math.floor(Math.random() * 3);
       const target = r.position + 10 + i * 5 + extra;
-      const time = 2500 + i * 600 + extra * 600;
+      const time = (2500 + i * 600 + 1 * 600) / 1000;
 
-      tweenTo(
-        r,
-        "position",
-        target,
-        time,
-        backout(0.5),
-        null,
-        i === this.reels.length - 1 ? this.reelsComplete.bind(this) : null
-      );
+      gsap.to(r, {
+        position: target,
+        duration: time,
+        ease: "back.out(0.5)",
+        onComplete:
+          i === this.reels.length - 1 ? this.reelsComplete.bind(this) : undefined,
+      });
     });
   }
 

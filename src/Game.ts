@@ -25,19 +25,19 @@ export class Game {
   }
 
   public async init(): Promise<void> {
-    // Load textures
+    // Load textures from local assets
     await Assets.load([
-      "https://pixijs.com/assets/eggHead.png",
-      "https://pixijs.com/assets/flowerTop.png",
-      "https://pixijs.com/assets/helmlok.png",
-      "https://pixijs.com/assets/skully.png",
+      "assets/eggHead.png",
+      "assets/flowerTop.png",
+      "assets/helmlok.png",
+      "assets/skully.png",
     ]);
 
     this.slotTextures = [
-      Texture.from("https://pixijs.com/assets/eggHead.png"),
-      Texture.from("https://pixijs.com/assets/flowerTop.png"),
-      Texture.from("https://pixijs.com/assets/helmlok.png"),
-      Texture.from("https://pixijs.com/assets/skully.png"),
+      Texture.from("assets/eggHead.png"),
+      Texture.from("assets/flowerTop.png"),
+      Texture.from("assets/helmlok.png"),
+      Texture.from("assets/skully.png"),
     ];
 
     // Initialize the Pixi application
@@ -54,7 +54,7 @@ export class Game {
     // Create reel models
     const reelModels: ReelModel[] = [];
     for (let i = 0; i < this.gameModel.reelCount; i++) {
-      const reelModel = new ReelModel(this.slotTextures, 4); // 4 symbols per reel
+      const reelModel = new ReelModel(this.slotTextures, 4, i); // 4 symbols per reel
       reelModels.push(reelModel);
     }
     this.gameModel.setReels(reelModels);

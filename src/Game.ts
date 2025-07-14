@@ -1,7 +1,5 @@
-import "@pixi/layout/devtools";
-import { Application, Assets, Texture } from "pixi.js";
-import { initDevtools } from "@pixi/devtools";
 import "@pixi/layout";
+import { Application, Assets, Texture } from "pixi.js";
 
 import { GameModel } from "./models/GameModel";
 import { ReelModel } from "./models/ReelModel";
@@ -27,9 +25,6 @@ export class Game {
   }
 
   public async init(): Promise<void> {
-    // Initialize devtools
-    initDevtools(this.app);
-
     // Load textures
     await Assets.load([
       "https://pixijs.com/assets/eggHead.png",
@@ -46,8 +41,15 @@ export class Game {
     ];
 
     // Initialize the Pixi application
-    await this.app.init({ background: "#1099bb", resizeTo: window });
+    await this.app.init({
+      background: "#1099bb",
+      resizeTo: window, // Type assertion to bypass type checking
+    });
     document.body.appendChild(this.app.canvas as HTMLCanvasElement);
+
+    // Enable automatic layout updates and debug overlay on the renderer’s layout system
+    this.app.renderer.layout.autoUpdate = true;
+    await this.app.renderer.layout.enableDebug(true);
 
     // Create reel models
     const reelModels: ReelModel[] = [];

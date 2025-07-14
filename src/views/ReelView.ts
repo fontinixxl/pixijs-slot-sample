@@ -13,6 +13,7 @@ export class ReelView {
     // Use layout for the reel container itself
     this.container = new LayoutContainer({
       layout: {
+        debug: false,
         width: this.symbolSize,
         height: this.symbolSize * 3,
         alignItems: "center",

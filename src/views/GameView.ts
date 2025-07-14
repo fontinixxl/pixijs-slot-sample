@@ -103,16 +103,15 @@ export class GameView {
     // Create game container
     const container = new LayoutContainer({
       layout: {
+        debug: false,
         width: "100%",
         height: "70%",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        gap: 5,
-        overflow: "hidden",
+        gap: 2,
       },
     });
-
     return container;
   }
 

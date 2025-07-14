@@ -10,7 +10,7 @@ export class GameView {
   private app: Application;
   private mainContainer!: LayoutContainer;
   private topContainer!: LayoutContainer;
-  private gameContainer!: LayoutContainer;
+  private gameContainer!: Container;
   private bottomContainer!: LayoutContainer;
 
   headerText!: Text;
@@ -42,6 +42,7 @@ export class GameView {
 
   private createMainContainer(): void {
     this.mainContainer = new LayoutContainer({
+      label: "main-container",
       layout: {
         width: this.app.screen.width,
         height: this.app.screen.height,
@@ -57,6 +58,7 @@ export class GameView {
   private createTopContainer(): LayoutContainer {
     // Create container
     const container = new LayoutContainer({
+      label: "top-container",
       layout: {
         width: "100%",
         height: "15%",
@@ -99,11 +101,12 @@ export class GameView {
     return container;
   }
 
-  private createGameContainer(): LayoutContainer {
+  private createGameContainer(): Container {
     // Create game container
-    const container = new LayoutContainer({
+    const container = new Container({
+      label: "reels-container",
       layout: {
-        debug: false,
+        // debug: true,
         width: "100%",
         height: "70%",
         flexDirection: "row",
@@ -118,6 +121,7 @@ export class GameView {
   private createBottomContainer(): LayoutContainer {
     // Create container
     const container = new LayoutContainer({
+      label: "bottom-container",
       layout: {
         width: "100%",
         height: "15%",
@@ -157,8 +161,10 @@ export class GameView {
   handleResize(): void {
     // Update main container dimensions
     if (this.mainContainer.layout) {
+      // Spread only the custom style, not the Layout instance, to avoid circular JSON
+      const prevStyle = this.mainContainer.layout.style;
       this.mainContainer.layout = {
-        ...this.mainContainer.layout,
+        ...prevStyle,
         width: this.app.screen.width,
         height: this.app.screen.height,
       };

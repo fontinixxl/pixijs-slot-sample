@@ -2,12 +2,18 @@ import { Texture } from "pixi.js";
 import { SymbolModel } from "./SymbolModel";
 
 export class ReelModel {
+  reelId: number = 0;
   position: number = 0;
   previousPosition: number = 0;
   symbols: SymbolModel[] = [];
 
-  constructor(public slotTextures: Texture[], public symbolCount: number = 4) {
+  constructor(
+    public slotTextures: Texture[],
+    public symbolCount: number = 4,
+    reelId: number
+  ) {
     this.initializeSymbols();
+    this.reelId = reelId;
   }
 
   private initializeSymbols(): void {

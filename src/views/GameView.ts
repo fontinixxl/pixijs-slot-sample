@@ -112,7 +112,7 @@ export class GameView {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        gap: 2,
+        gap: 1,
       },
     });
     return container;

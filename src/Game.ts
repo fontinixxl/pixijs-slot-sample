@@ -1,4 +1,6 @@
 import "@pixi/layout";
+import "@pixi/layout/devtools";
+import { initDevtools } from "@pixi/devtools";
 import { Application, Assets, Texture } from "pixi.js";
 
 import { GameModel } from "./models/GameModel";
@@ -25,6 +27,7 @@ export class Game {
   }
 
   public async init(): Promise<void> {
+    initDevtools(this.app);
     // Load textures from local assets
     await Assets.load([
       "assets/eggHead.png",
